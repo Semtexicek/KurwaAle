@@ -1,41 +1,38 @@
 from tkinter import *
-from tkinter.ttk import *
-from OfficBordel import *
-
-
-
+def donothing():
+   filewin = Toplevel(root)
+   button = Button(filewin, text="Do nothing button")
+   button.pack()
+   
 root = Tk()
-root.geometry('800x600')
-root.title('Game')
+menubar = Menu(root)
+filemenu = Menu(menubar, tearoff = 0)
+filemenu.add_command(label="New")
+filemenu.add_command(label = "Open", command = donothing)
+filemenu.add_command(label = "Save", command = donothing)
+filemenu.add_command(label = "Save as...", command = donothing)
+filemenu.add_command(label = "Close", command = donothing)
 
+filemenu.add_separator()
 
+filemenu.add_command(label = "Exit", command = root.quit)
+menubar.add_cascade(label = "File", menu = filemenu)
+editmenu = Menu(menubar, tearoff=0)
+editmenu.add_command(label = "Undo", command = donothing)
 
-mainScreen = Text(root, width = 70, heigh = 24, border = 5, bg = 'black', fg = 'white')
-mainScreen.insert(END, 'Tady by bohl byt vypsanej text toho co se vzdycky deje, quest nebo nejakej takovej bordel.')
-mainScreen.configure(state = DISABLED)
-mainScreen.grid(row = 1, column = 1)
+editmenu.add_separator()
 
-answerchoiceScreen = Text(root, width = 70, heigh = 9, border = 5, bg = 'black', fg = 'white')
-answerchoiceScreen.insert(END, test)
-answerchoiceScreen.configure(state = DISABLED)
-answerchoiceScreen.grid(row = 2, column = 1)
+editmenu.add_command(label = "Cut", command = donothing)
+editmenu.add_command(label = "Copy", command = donothing)
+editmenu.add_command(label = "Paste", command = donothing)
+editmenu.add_command(label = "Delete", command = donothing)
+editmenu.add_command(label = "Select All", command = donothing)
 
-mapScreen = Text(root, width = 29, heigh = 15, bg = 'black', fg = 'white',)
-mapScreen.insert(END, 'Tady bude nejaka forma mapy')
-mapScreen.configure(state = DISABLED)
-mapScreen.place(x = 572, y = 0)
+menubar.add_cascade(label = "Edit", menu = editmenu)
+helpmenu = Menu(menubar, tearoff=0)
+helpmenu.add_command(label = "Help Index", command = donothing)
+helpmenu.add_command(label = "About...", command = donothing)
+menubar.add_cascade(label = "Help", menu = helpmenu)
 
-infoScreen = Text(root, width = 29, heigh = 20, bg = 'black', fg = 'white')
-infoScreen.insert(END, 'Tady by mohl byt nejakej completni log [combat log atd.]')
-infoScreen.configure(state = DISABLED)
-infoScreen.place(x = 572, y = 244)
-
-answerScreen = Entry(root, width = 94)
-answerScreen.grid(row = 3, column = 1)
-
-
-
-
-
-
+root.config(menu = menubar)
 root.mainloop()
